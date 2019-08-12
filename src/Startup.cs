@@ -64,7 +64,7 @@ namespace Broker
                         OnValidateCredentials = context =>
                         {
                             var password = Configuration["Authentication:Password"];
-                            if (context.Username == "mybroker" && context.Password == password)
+                            if (context.Username == "mybrokeruser" && context.Password == password)
                             {
                                 // Generate principal.
                                 var claims = new[]
