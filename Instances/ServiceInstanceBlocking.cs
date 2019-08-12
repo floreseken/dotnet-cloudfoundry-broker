@@ -2,23 +2,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using OpenServiceBroker.Instances;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 
 namespace Broker.Instances
 {
     public class ServiceInstanceBlocking : IServiceInstanceBlocking
     {
         private readonly ILogger<ServiceInstanceBlocking> _log;
+        private readonly IOptions<CloudFoundryApplicationOptions> _appConfig;
 
-        public ServiceInstanceBlocking(ILogger<ServiceInstanceBlocking> log)
+        public ServiceInstanceBlocking(ILogger<ServiceInstanceBlocking> log, IOptions<CloudFoundryApplicationOptions> appConfig)
         {
             _log = log;
+            this._appConfig = appConfig;
         }
 
         public async Task<ServiceInstanceProvision> ProvisionAsync(ServiceInstanceContext context, ServiceInstanceProvisionRequest request)
         {
             LogContext(_log, "Provision", context);
             LogRequest(_log, request);
+
+            _log.LogInformation($"The CF api is: {_appConfig.Value.CF_Api}");
 
             var orgId = request.OrganizationGuid;
             var spaceId = request.SpaceGuid;
