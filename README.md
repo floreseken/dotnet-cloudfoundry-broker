@@ -12,4 +12,4 @@ The broker it self must be running as an app on CF. To do this:
 
 Now we must register the broker. This is done with:
 
-- 
+- `cf csb mybroker mybrokeruser <password from Authentication:Password here> <full url of pushed broker app here>`
