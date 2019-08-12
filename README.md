@@ -6,7 +6,7 @@ The service broker expects a configuration setting named `Authentication:Passwor
 # how to use
 The broker it self must be running as an app on CF. To do this:
 
-- cf push in the app folder
+- `cf push` in the app folder
 - set the env var **Authentication:Password** to your password
 - restart the app
 
