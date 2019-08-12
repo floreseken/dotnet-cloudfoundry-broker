@@ -13,3 +13,9 @@ The broker it self must be running as an app on CF. To do this:
 Now we must register the broker. This is done with:
 
 - `cf csb mybroker mybrokeruser <password from Authentication:Password here> <full url of pushed broker app here>`
+
+And assign permissions to use it in the martket place:
+
+- `cf enable-service-access scaffoldservice -o <org to give access>`
+
+**Note**: the name 'scaffoldservice' comes from the catalogservice.cs
